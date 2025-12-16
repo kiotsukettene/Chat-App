@@ -4,9 +4,10 @@ import type { UserData } from '../types/chat';
 
 interface LoginScreenProps {
   onJoin: (userData: UserData) => void;
+  showDisconnectNotice?: boolean;
 }
 
-export default function LoginScreen({ onJoin }: LoginScreenProps) {
+export default function LoginScreen({ onJoin, showDisconnectNotice }: LoginScreenProps) {
   const [username, setUsername] = useState('');
   const [channel, setChannel] = useState('general');
   const [error, setError] = useState('');
@@ -36,6 +37,7 @@ export default function LoginScreen({ onJoin }: LoginScreenProps) {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       <div className="max-w-md w-full">
+
         <div className="bg-white rounded-lg shadow-md p-8">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -97,6 +99,11 @@ export default function LoginScreen({ onJoin }: LoginScreenProps) {
             >
               Join Chat
             </button>
+            {showDisconnectNotice && (
+              <div className="bg-yellow-50 border border-yellow-200 text-yellow-700 px-4 py-3 rounded-lg text-sm">
+                You have been disconnected from the chat. Please log in again.
+              </div>
+            )}
           </form>
         </div>
       </div>
